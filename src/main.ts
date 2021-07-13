@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
 
 import { AppModule } from './app.module';
 
@@ -28,6 +29,8 @@ async function bootstrap() {
     app.use(graylogMiddleware);
     app.useLogger(grayLogger);
   }
+
+  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(HTTP_PORT);
   console.log('-------------------------------------------------------------');
