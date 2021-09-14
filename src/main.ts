@@ -13,6 +13,10 @@ const grayLogger = new GrayLogger();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: true,
+  });
+
   if (NODE_ENV !== 'production') {
     //Adicionando SWAGGER
     const config = new DocumentBuilder()
